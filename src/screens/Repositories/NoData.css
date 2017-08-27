@@ -1,0 +1,9 @@
+.NoData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+
+  font-size: 3em;
+  /*font-weight: 300;*/
+}
