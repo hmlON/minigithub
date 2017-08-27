@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import RepositoriesList from './RepositoriesList';
+import RepositoriesList from './RepositoriesList';
 import Loading from './Loading';
 import Failed from './Failed';
 
@@ -39,10 +39,8 @@ class Repositories extends Component {
     if (this.state.requestFailed) return <Failed />
     if (!this.state.repos) return <Loading />
 
-    console.log(this.state.repos);
-
     return (
-      <Loading />
+      <RepositoriesList repos={this.state.repos}/>
     );
   }
 }
