@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RepositoriesList from './RepositoriesList';
 import SortersList from './SortersList';
+import OrderForm from './OrderForm';
 import Loading from './Loading';
 import Failed from './Failed';
 
@@ -10,10 +11,11 @@ class Repositories extends Component {
     this.state = {
       requestFailed: false,
       sortParameter: "updated_at",
-      sortAscending: false
+      ascendingOrder: false
     }
 
     this.updateSortParameter = this.updateSortParameter.bind(this);
+    this.updateAscendingOrder = this.updateAscendingOrder.bind(this);
   }
 
   github_api_url() {
@@ -44,9 +46,13 @@ class Repositories extends Component {
     this.setState({sortParameter: sortParameter})
   }
 
+  updateAscendingOrder(ascendingOrder) {
+    this.setState({ascendingOrder: ascendingOrder})
+  }
+
   sort(repos) {
     repos = repos.sort((a, b) => (a[this.state.sortParameter] > b[this.state.sortParameter]) ? 1 : -1)
-    if (this.state.sortAscending) {
+    if (this.state.ascendingOrder) {
       return repos
     }
     return repos.reverse()
@@ -63,6 +69,7 @@ class Repositories extends Component {
     return (
       <div className="Repositories">
         <SortersList sortParameter={this.state.sortParameter} updateSortParameter={this.updateSortParameter} />
+        <OrderForm ascendingOrder={this.state.ascendingOrder} updateAscendingOrder={this.updateAscendingOrder} />
         <RepositoriesList repos={repos}/>
       </div>
     );
