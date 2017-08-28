@@ -7,7 +7,9 @@ class Repositories extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      requestFailed: false
+      requestFailed: false,
+      sort_parameter: "updated_at",
+      sort_ascending: false
     }
   }
 
@@ -35,12 +37,24 @@ class Repositories extends Component {
       })
   }
 
+  sort(repos) {
+    repos = repos.sort((a, b) => (a[this.state.sort_parameter] > b[this.state.sort_parameter]) ? 1 : -1)
+    if (this.state.sort_ascending) {
+      return repos
+    }
+    return repos.reverse()
+  }
+
   render() {
     if (this.state.requestFailed) return <Failed />
     if (!this.state.repos) return <Loading />
 
+    var repos = this.sort(this.state.repos)
+
+    console.log(repos[0]);
+
     return (
-      <RepositoriesList repos={this.state.repos}/>
+      <RepositoriesList repos={repos}/>
     );
   }
 }
