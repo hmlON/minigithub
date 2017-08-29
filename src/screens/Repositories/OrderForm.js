@@ -14,7 +14,9 @@ class OrderForm extends Component {
   render() {
     return (
       <div className="OrderForm">
-        Order:
+        <div className="OrderForm-description">
+          Order:
+        </div>
         <form>
           <label>
             <input type="radio" value='ascending' checked={this.props.ascendingOrder === true} onChange={this.handleOptionChange}/>

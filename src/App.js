@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: "hmlon"
+      username: null
     }
 
     this.updateUsername = this.updateUsername.bind(this);
@@ -20,14 +20,7 @@ class App extends Component {
   render() {
     if (this.state.username) return <Repositories username={this.state.username} />
 
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h3>Welcome to MiniGithub</h3>
-        </div>
-        <Owner username="hmlon" handleSubmit={this.updateUsername}/>
-      </div>
-    );
+    return <Owner username="hmlon" handleSubmit={this.updateUsername}/>;
   }
 }
 

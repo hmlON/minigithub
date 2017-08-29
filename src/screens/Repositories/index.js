@@ -4,6 +4,7 @@ import SortersList from './SortersList';
 import OrderForm from './OrderForm';
 import Loading from './Loading';
 import Failed from './Failed';
+import './index.css';
 
 class Repositories extends Component {
   constructor(props) {
@@ -68,8 +69,13 @@ class Repositories extends Component {
 
     return (
       <div className="Repositories">
-        <SortersList sortParameter={this.state.sortParameter} updateSortParameter={this.updateSortParameter} />
-        <OrderForm ascendingOrder={this.state.ascendingOrder} updateAscendingOrder={this.updateAscendingOrder} />
+        <div className="Repositories-header">
+          <h3>Repositories of {this.props.username}</h3>
+        </div>
+        <div className="formatters">
+          <SortersList sortParameter={this.state.sortParameter} updateSortParameter={this.updateSortParameter} />
+          <OrderForm ascendingOrder={this.state.ascendingOrder} updateAscendingOrder={this.updateAscendingOrder} />
+        </div>
         <RepositoriesList repos={repos}/>
       </div>
     );

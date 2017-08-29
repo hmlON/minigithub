@@ -25,7 +25,6 @@ class Repository extends Component {
         <div className="Repository-stars-count">
           Language: {this.props.language}
         </div>
-        <hr/>
       </div>
     );
   }

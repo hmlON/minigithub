@@ -1,0 +1,13 @@
+.Owner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+  /*padding: 50px;*/
+  /*font-size: 2em;*/
+}
+/*
+input[type="submit"] {
+  padding: 100px
+}*/

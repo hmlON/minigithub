@@ -15,7 +15,9 @@ class SortersList extends Component {
   render() {
     return (
       <div className="SortersList">
-        Sort by:
+        <div className="Sorters-description">
+          Sort by:
+        </div>
         <form>
           <Sorter name="Repo name" sortParameter="name" selectedSortParameter={this.props.sortParameter} handleOptionChange={this.handleOptionChange}  />
           <Sorter name="Stars count" sortParameter="stargazers_count" selectedSortParameter={this.props.sortParameter} handleOptionChange={this.handleOptionChange}  />

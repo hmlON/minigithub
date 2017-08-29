@@ -1,0 +1,41 @@
+.Repositories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Repositories-header {
+  width: 100vw;
+  padding: 5px;
+  background-color: #222;
+  text-align: center;
+  color: white;
+}
+
+.formatters, .SortersList, .OrderForm, form {
+  display: flex;
+  flex-direction: row;
+}
+
+.SortersList {
+  border-right: 3px solid black;
+  padding: 5px;
+}
+
+.OrderForm {
+  padding: 5px;
+}
+
+.RepositoriesList {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Repository {
+  width: 100%;
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+}

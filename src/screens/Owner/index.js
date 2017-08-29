@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './index.css';
 
 class Owner extends Component {
   constructor(props) {
@@ -20,13 +21,18 @@ class Owner extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Username:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="Owner">
+        <div className="Owner-header">
+          <h1>Welcome to MiniGithub</h1>
+        </div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Enter username:
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 }
