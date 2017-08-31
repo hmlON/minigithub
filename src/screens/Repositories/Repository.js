@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 
 class Repository extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
+    this.props.openDialog(this.props.name)
+  }
+
   render() {
     let is_fork = null;
     if (this.props.fork) {
@@ -8,7 +18,7 @@ class Repository extends Component {
     }
 
     return (
-      <div className="Repository">
+      <div className="Repository" onClick={this.handleClick}>
         <div className="Repository-name">
           {this.props.name}
         </div>

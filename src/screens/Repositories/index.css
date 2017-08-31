@@ -39,3 +39,46 @@
   margin: 5px;
   padding: 5px;
 }
+
+.Dialog {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Dialog-inner {
+  opacity: 2;
+  width: 80vw;
+  height: 80vh;
+  background: #FFF;
+}
+
+.Dialog-header {
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Dialog-header-text {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.Dialog-close {
+  border-left: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+}
+
+.Dialog-content {
+  padding: 10px;
+}
