@@ -29,10 +29,10 @@ class Repository extends Component {
         <div className="Repository-stars-count">
           Stars: {this.props.stargazers_count}
         </div>
-        <div className="Repository-stars-count">
-          Updated on: {this.props.updated_at}
+        <div className="Repository-updated-at">
+          Updated on: {new Date(this.props.updated_at).toLocaleString()}
         </div>
-        <div className="Repository-stars-count">
+        <div className="Repository-language">
           Language: {this.props.language}
         </div>
       </div>
