@@ -11,24 +11,31 @@ class Repositories extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      repos: [],
       requestFailed: false,
+      pagesLoaded: 0,
       sortParameter: "updated_at",
       ascendingOrder: false,
       showDialog: false,
       dialogRepoName: null
     }
 
+    this.loadRepos = this.loadRepos.bind(this);
     this.updateSortParameter = this.updateSortParameter.bind(this);
     this.updateAscendingOrder = this.updateAscendingOrder.bind(this);
     this.openDialog = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
   }
 
-  githubApiUrl() {
-    return 'https://api.github.com/users/' + this.props.username + '/repos'
+  componentDidMount() {
+    this.loadRepos()
   }
 
-  componentDidMount() {
+  githubApiUrl() {
+    return `https://api.github.com/users/${this.props.username}/repos?page=${this.state.pagesLoaded + 1}`
+  }
+
+  loadRepos() {
     fetch(this.githubApiUrl())
       .then(response => {
         if (!response.ok) {
@@ -38,8 +45,11 @@ class Repositories extends Component {
       })
       .then(data => data.json())
       .then(data => {
-        this.setState({
-          repos: data
+        this.setState(prevState => {
+          return {
+            repos: prevState.repos.concat(data),
+            pagesLoaded: prevState.pagesLoaded + 1
+          }
         })
       }, () => {
         this.setState({
@@ -92,6 +102,7 @@ class Repositories extends Component {
         </div>
         <RepositoriesList repos={repos} openDialog={this.openDialog}/>
         <Dialog username={this.props.username} name={this.state.dialogRepoName} shown={this.state.showDialog} closeDialog={this.closeDialog} />
+        <button onClick={this.loadRepos}>Load more</button>
       </div>
     );
   }
