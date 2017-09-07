@@ -16,7 +16,6 @@ class Repositories extends Component {
       pagesLoaded: 0,
       sortParameter: "updated_at",
       ascendingOrder: false,
-      showDialog: false,
       dialogRepoUrl: null
     }
 
@@ -67,14 +66,11 @@ class Repositories extends Component {
   }
 
   openDialog(repoUrl) {
-    this.setState({
-      showDialog: true,
-      dialogRepoUrl: repoUrl
-    })
+    this.setState({dialogRepoUrl: repoUrl})
   }
 
   closeDialog() {
-    this.setState({showDialog: false})
+    this.setState({dialogRepoUrl: null})
   }
 
   sort(repos) {
@@ -101,7 +97,7 @@ class Repositories extends Component {
           <OrderForm ascendingOrder={this.state.ascendingOrder} updateAscendingOrder={this.updateAscendingOrder} />
         </div>
         <RepositoriesList repos={repos} openDialog={this.openDialog}/>
-        <Dialog url={this.props.dialogRepoUrl} shown={this.state.showDialog} closeDialog={this.closeDialog} />
+        <Dialog url={this.state.dialogRepoUrl} closeDialog={this.closeDialog} />
         <button onClick={this.loadRepos}>Load more</button>
       </div>
     );

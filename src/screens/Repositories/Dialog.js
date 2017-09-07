@@ -31,7 +31,7 @@ class Repositories extends Component {
   }
 
   render() {
-    if (!this.props.shown) return null
+    if (!this.props.url) return null
     if (this.state.requestFailed) return <Failed />
     if (!this.state.id) return <Loading />
 

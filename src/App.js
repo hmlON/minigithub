@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: null
+      username: "rails"
     }
 
     this.updateUsername = this.updateUsername.bind(this);
