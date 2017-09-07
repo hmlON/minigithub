@@ -17,7 +17,7 @@ class Repositories extends Component {
       sortParameter: "updated_at",
       ascendingOrder: false,
       showDialog: false,
-      dialogRepoName: null
+      dialogRepoUrl: null
     }
 
     this.loadRepos = this.loadRepos.bind(this);
@@ -66,10 +66,10 @@ class Repositories extends Component {
     this.setState({ascendingOrder: ascendingOrder})
   }
 
-  openDialog(repoName) {
+  openDialog(repoUrl) {
     this.setState({
       showDialog: true,
-      dialogRepoName: repoName
+      dialogRepoUrl: repoUrl
     })
   }
 
@@ -101,7 +101,7 @@ class Repositories extends Component {
           <OrderForm ascendingOrder={this.state.ascendingOrder} updateAscendingOrder={this.updateAscendingOrder} />
         </div>
         <RepositoriesList repos={repos} openDialog={this.openDialog}/>
-        <Dialog username={this.props.username} name={this.state.dialogRepoName} shown={this.state.showDialog} closeDialog={this.closeDialog} />
+        <Dialog url={this.props.dialogRepoUrl} shown={this.state.showDialog} closeDialog={this.closeDialog} />
         <button onClick={this.loadRepos}>Load more</button>
       </div>
     );

@@ -8,7 +8,7 @@ class Repository extends Component {
   }
 
   handleClick(event) {
-    this.props.openDialog(this.props.name)
+    this.props.openDialog(this.props.url)
   }
 
   render() {

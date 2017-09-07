@@ -10,12 +10,10 @@ class Repositories extends Component {
     }
   }
 
-  githubApiUrl() {
-    return 'https://api.github.com/repos/' + this.props.username + '/' + this.props.name
-  }
-
   componentDidUpdate() {
-    fetch(this.githubApiUrl())
+    if (!this.props.url) return null
+
+    fetch(this.props.url)
       .then(response => {
         if (!response.ok) {
           throw Error('Network request failed')
