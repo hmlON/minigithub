@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContributorsTable from './ContributorsTable';
 import Loading from '../Loading';
 import Failed from '../Failed';
 
@@ -60,9 +61,7 @@ class Repositories extends Component {
               <a href={"https://github.com/" + this.state.full_name}>Open on Github</a>
             </div>
             { fork_link }
-            <div className="Dialog-content-element">
-              contributors table (username | contributions) of the most active (top 3) contributors, with profile links
-            </div>
+            <ContributorsTable url={this.state.contributors_url} />
             <div className="Dialog-content-element">
               languages table (language | Kb) of the most used languages (more than 1Kb)
             </div>

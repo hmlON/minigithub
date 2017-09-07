@@ -16,7 +16,7 @@ class Repositories extends Component {
       pagesLoaded: 0,
       sortParameter: "updated_at",
       ascendingOrder: false,
-      dialogRepoUrl: null
+      dialogRepoUrl: "https://api.github.com/repos/rails/activeresource"
     }
 
     this.loadRepos = this.loadRepos.bind(this);
