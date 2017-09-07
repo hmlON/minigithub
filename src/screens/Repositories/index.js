@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import RepositoriesList from './RepositoriesList';
 import SortersList from './SortersList';
 import OrderForm from './OrderForm';
-import Dialog from './Dialog';
+import Dialog from './Dialog/';
 import Loading from './Loading';
 import Failed from './Failed';
 import './index.css';

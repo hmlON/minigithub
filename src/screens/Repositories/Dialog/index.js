@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Loading from './Loading';
-import Failed from './Failed';
+import Loading from '../Loading';
+import Failed from '../Failed';
 
 class Repositories extends Component {
   constructor(props) {
