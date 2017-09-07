@@ -31,7 +31,9 @@ class Repositories extends Component {
   }
 
   githubApiUrl() {
-    return `https://api.github.com/users/${this.props.username}/repos?page=${this.state.pagesLoaded + 1}`
+    // Sort parameter was added for the better user expirience
+    // (so that user will get the freshest repos first and will load older with "load more" buttom)
+    return `https://api.github.com/users/${this.props.username}/repos?sort=updated&page=${this.state.pagesLoaded + 1}`
   }
 
   loadRepos() {
