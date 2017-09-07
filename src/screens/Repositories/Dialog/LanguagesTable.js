@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ContributorsTable extends Component {
+class LanguagesTable extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -18,7 +18,7 @@ class ContributorsTable extends Component {
       })
       .then(data => data.json())
       .then(data => {
-        this.setState({contributors: data})
+        this.setState({languages: data})
       }, () => {
         this.setState({
           requestFailed: true
@@ -29,23 +29,21 @@ class ContributorsTable extends Component {
   render() {
     if (!this.props.url) return null
     if (this.state.requestFailed) return <div>Failed!</div>
-    if (!this.state.contributors) return <div>Loading...</div>
+    if (!this.state.languages) return <div>Loading...</div>
 
-    const contributors = this.state.contributors.sort((a, b) => (a.contributions < b.contributions) ? 1 : -1).slice(0, 3)
+    const languages = Object.keys(this.state.languages).map(key => {return {name: key, size: this.state.languages[key] / 1024}})
+                                                       .filter((language) => language.size >= 1)
 
     return (
-      <div className="ContributorsTable">
-        <h3>Top 3 Contributors</h3>
+      <div className="LanguagesTable">
+        <h3>Languages</h3>
         <table>
           <tr>
-            <th>username</th>
-            <th>contributions</th>
+            <th>Language</th>
+            <th>Size, Kb</th>
           </tr>
-          {contributors.map(contributor =>
-            <tr>
-              <td><a href={contributor.html_url}>{contributor.login}</a></td>
-              <td>{contributor.contributions}</td>
-            </tr>
+          {languages.map(language =>
+            <tr><td>{language.name}</td><td>{language.size} Kb</td></tr>
           )}
         </table>
       </div>
@@ -53,4 +51,4 @@ class ContributorsTable extends Component {
   }
 }
 
-export default ContributorsTable;
+export default LanguagesTable;

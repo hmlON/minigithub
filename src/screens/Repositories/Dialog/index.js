@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ContributorsTable from './ContributorsTable';
+import LanguagesTable from './LanguagesTable';
 import Loading from '../Loading';
 import Failed from '../Failed';
 
@@ -62,9 +63,7 @@ class Repositories extends Component {
             </div>
             { fork_link }
             <ContributorsTable url={this.state.contributors_url} />
-            <div className="Dialog-content-element">
-              languages table (language | Kb) of the most used languages (more than 1Kb)
-            </div>
+            <LanguagesTable url={this.state.languages_url} />
             <div className="Dialog-content-element">
               list of the most popular (top 5, only currently open) PRs, with links
             </div>
