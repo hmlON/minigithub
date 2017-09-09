@@ -14,9 +14,19 @@ class Repositories extends Component {
       repos: [],
       requestFailed: false,
       pagesLoaded: 0,
+      dialogRepoUrl: null,
+
+      // sorting
       sortParameter: "updated_at",
       ascendingOrder: false,
-      dialogRepoUrl: null,
+
+      // filters
+      hasOpenIssues: null,
+      hasTopics: null,
+      minStarsCount: null,
+      updatedAfter: null,
+      isFork: null,
+      language: null
     }
 
     this.loadRepos = this.loadRepos.bind(this);
@@ -83,11 +93,28 @@ class Repositories extends Component {
     return repos.reverse()
   }
 
+  filter(repos) {
+    switch (this.state.hasOpenIssues) {
+      case true: repos = repos.filter(repo => repo.open_issues_count > 0); break;
+      case false: repos = repos.filter(repo => repo.open_issues_count === 0); break;
+      default: break;
+    }
+    switch (this.state.isFork) {
+      case true: repos = repos.filter(repo => repo.fork); break;
+      case false: repos = repos.filter(repo => !(repo.fork)); break;
+      default: break;
+    }
+    if (this.state.minStarsCount) { repos = repos.filter(repo => repo.stargazers_count >= this.state.minStarsCount) }
+    if (this.state.updatedAfter) { repos = repos.filter(repo => new Date(repo.updated_at) >= new Date(this.state.updatedAfter)) }
+    if (this.state.language) { repos = repos.filter(repo => repo.language === this.state.language) }
+    return repos
+  }
+
   render() {
     if (this.state.requestFailed) return <Failed />
     if (!this.state.repos) return <Loading />
 
-    var repos = this.sort(this.state.repos)
+    var repos = this.sort(this.filter(this.state.repos))
 
     return (
       <div className="Repositories">
