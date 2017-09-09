@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ContributorsTable from './ContributorsTable';
 import LanguagesTable from './LanguagesTable';
+import PullsList from './PullsList';
 import Loading from '../Loading';
 import Failed from '../Failed';
 
@@ -64,9 +65,7 @@ class Repositories extends Component {
             { fork_link }
             <ContributorsTable url={this.state.contributors_url} />
             <LanguagesTable url={this.state.languages_url} />
-            <div className="Dialog-content-element">
-              list of the most popular (top 5, only currently open) PRs, with links
-            </div>
+            <PullsList url={this.state.pulls_url.split("{")[0] + "?state=open&sort=popularity&direction=desc"} />
           </div>
         </div>
       </div>

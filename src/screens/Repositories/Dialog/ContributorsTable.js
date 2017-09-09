@@ -8,7 +8,7 @@ class ContributorsTable extends Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     fetch(this.props.url)
       .then(response => {
         if (!response.ok) {
