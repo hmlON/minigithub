@@ -4,6 +4,7 @@ import SortersList from './SortersList';
 import OrderForm from './OrderForm';
 import StarsFilter from './StarsFilter';
 import DateFilter from './DateFilter';
+import TypeFilter from './TypeFilter';
 import Dialog from './Dialog/';
 import Loading from './Loading';
 import Failed from './Failed';
@@ -36,6 +37,7 @@ class Repositories extends Component {
     this.updateAscendingOrder = this.updateAscendingOrder.bind(this);
     this.updateMinStarsCount = this.updateMinStarsCount.bind(this);
     this.updateUpdatedAfter = this.updateUpdatedAfter.bind(this);
+    this.updateIsFork = this.updateIsFork.bind(this);
     this.openDialog = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
   }
@@ -89,6 +91,10 @@ class Repositories extends Component {
     this.setState({updatedAfter: updatedAfter})
   }
 
+  updateIsFork(isFork) {
+    this.setState({isFork: isFork})
+  }
+
   openDialog(repoUrl) {
     this.setState({dialogRepoUrl: repoUrl})
   }
@@ -137,6 +143,7 @@ class Repositories extends Component {
           <div className="filters">
             <StarsFilter updateMinStarsCount={this.updateMinStarsCount} />
             <DateFilter updateUpdatedAfter={this.updateUpdatedAfter} />
+            <TypeFilter updateIsFork={this.updateIsFork} />
           </div>
           <div className="sorters">
             <SortersList sortParameter={this.state.sortParameter} updateSortParameter={this.updateSortParameter} />
