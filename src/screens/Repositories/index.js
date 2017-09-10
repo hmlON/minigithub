@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RepositoriesList from './RepositoriesList';
 import SortersList from './SortersList';
 import OrderForm from './OrderForm';
+import StarsFilter from './StarsFilter';
 import Dialog from './Dialog/';
 import Loading from './Loading';
 import Failed from './Failed';
@@ -32,6 +33,7 @@ class Repositories extends Component {
     this.loadRepos = this.loadRepos.bind(this);
     this.updateSortParameter = this.updateSortParameter.bind(this);
     this.updateAscendingOrder = this.updateAscendingOrder.bind(this);
+    this.updateMinStarsCount = this.updateMinStarsCount.bind(this);
     this.openDialog = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
   }
@@ -75,6 +77,10 @@ class Repositories extends Component {
 
   updateAscendingOrder(ascendingOrder) {
     this.setState({ascendingOrder: ascendingOrder})
+  }
+
+  updateMinStarsCount(minStarsCount) {
+    this.setState({minStarsCount: minStarsCount})
   }
 
   openDialog(repoUrl) {
@@ -121,9 +127,14 @@ class Repositories extends Component {
         <div className="Repositories-header">
           <h3>Repositories of {this.props.username}</h3>
         </div>
-        <div className="formatters">
-          <SortersList sortParameter={this.state.sortParameter} updateSortParameter={this.updateSortParameter} />
-          <OrderForm ascendingOrder={this.state.ascendingOrder} updateAscendingOrder={this.updateAscendingOrder} />
+        <div className="Repositories-formatters">
+          <div className="filters">
+            <StarsFilter updateMinStarsCount={this.updateMinStarsCount} />
+          </div>
+          <div className="sorters">
+            <SortersList sortParameter={this.state.sortParameter} updateSortParameter={this.updateSortParameter} />
+            <OrderForm ascendingOrder={this.state.ascendingOrder} updateAscendingOrder={this.updateAscendingOrder} />
+          </div>
         </div>
         <RepositoriesList repos={repos} openDialog={this.openDialog}/>
         <Dialog url={this.state.dialogRepoUrl} closeDialog={this.closeDialog} />

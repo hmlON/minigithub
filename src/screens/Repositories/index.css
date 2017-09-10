@@ -12,9 +12,15 @@
   color: white;
 }
 
-.formatters, .SortersList, .OrderForm, form {
+.Repositories-formatters {
+  display: flex;
+  flex-direction: column;
+}
+
+.sorters, .filters, .SortersList, .OrderForm, form {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .SortersList {

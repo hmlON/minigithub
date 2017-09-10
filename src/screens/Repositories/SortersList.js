@@ -24,7 +24,6 @@ class SortersList extends Component {
           <Sorter name="Open issues count" sortParameter="open_issues_count" selectedSortParameter={this.props.sortParameter} handleOptionChange={this.handleOptionChange}  />
           <Sorter name="Updated date" sortParameter="updated_at" selectedSortParameter={this.props.sortParameter} handleOptionChange={this.handleOptionChange}  />
         </form>
-        <hr/>
       </div>
     );
   }

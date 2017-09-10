@@ -27,7 +27,6 @@ class OrderForm extends Component {
             Descending
           </label>
         </form>
-        <hr/>
       </div>
     );
   }
