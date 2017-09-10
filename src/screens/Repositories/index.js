@@ -6,6 +6,7 @@ import StarsFilter from './StarsFilter';
 import DateFilter from './DateFilter';
 import TypeFilter from './TypeFilter';
 import OpenIssuesFilter from './OpenIssuesFilter';
+import LanguagesFilter from './LanguagesFilter';
 import Dialog from './Dialog/';
 import Loading from './Loading';
 import Failed from './Failed';
@@ -34,11 +35,13 @@ class Repositories extends Component {
     }
 
     this.loadRepos = this.loadRepos.bind(this);
+    this.languages = this.languages.bind(this);
     this.updateSortParameter = this.updateSortParameter.bind(this);
     this.updateAscendingOrder = this.updateAscendingOrder.bind(this);
     this.updateMinStarsCount = this.updateMinStarsCount.bind(this);
     this.updateUpdatedAfter = this.updateUpdatedAfter.bind(this);
     this.updateHasOpenIssues = this.updateHasOpenIssues.bind(this);
+    this.updateLanguage = this.updateLanguage.bind(this);
     this.updateIsFork = this.updateIsFork.bind(this);
     this.openDialog = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
@@ -101,12 +104,21 @@ class Repositories extends Component {
     this.setState({hasOpenIssues: hasOpenIssues})
   }
 
+  updateLanguage(language) {
+    this.setState({language: language})
+  }
+
   openDialog(repoUrl) {
     this.setState({dialogRepoUrl: repoUrl})
   }
 
   closeDialog() {
     this.setState({dialogRepoUrl: null})
+  }
+
+  languages() {
+    return this.state.repos.map(repo => repo.language)
+                           .filter((v, i, a) => a.indexOf(v) === i)
   }
 
   sort(repos) {
@@ -151,6 +163,7 @@ class Repositories extends Component {
             <DateFilter updateUpdatedAfter={this.updateUpdatedAfter} />
             <TypeFilter updateIsFork={this.updateIsFork} />
             <OpenIssuesFilter updateHasOpenIssues={this.updateHasOpenIssues} />
+            <LanguagesFilter updateLanguage={this.updateLanguage} languages={this.languages()} />
           </div>
           <div className="sorters">
             <SortersList sortParameter={this.state.sortParameter} updateSortParameter={this.updateSortParameter} />
