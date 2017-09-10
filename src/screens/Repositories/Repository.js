@@ -30,7 +30,7 @@ class Repository extends Component {
           Stars: {this.props.stargazers_count}
         </div>
         <div className="Repository-updated-at">
-          Updated on: {new Date(this.props.updated_at).toLocaleString()}
+          Updated on: {new Date(this.props.pushed_at).toLocaleString()}
         </div>
         <div className="Repository-language">
           Language: {this.props.language}

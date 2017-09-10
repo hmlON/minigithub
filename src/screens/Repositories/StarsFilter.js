@@ -8,8 +8,6 @@ class StarsFilter extends Component {
   }
 
   handleChange(event) {
-    // console.log(event.target.value)
-    // this.props.updateAscendingOrder(event.target.value === "ascending")
     this.props.updateMinStarsCount(event.target.value)
   }
 
@@ -22,7 +20,5 @@ class StarsFilter extends Component {
     );
   }
 }
-
-// <input type="radio" value='ascending' checked={this.props.ascendingOrder === true} onChange={this.handleOptionChange}/>
 
 export default StarsFilter;

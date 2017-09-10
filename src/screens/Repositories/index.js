@@ -3,6 +3,7 @@ import RepositoriesList from './RepositoriesList';
 import SortersList from './SortersList';
 import OrderForm from './OrderForm';
 import StarsFilter from './StarsFilter';
+import DateFilter from './DateFilter';
 import Dialog from './Dialog/';
 import Loading from './Loading';
 import Failed from './Failed';
@@ -18,7 +19,7 @@ class Repositories extends Component {
       dialogRepoUrl: null,
 
       // sorting
-      sortParameter: "updated_at",
+      sortParameter: "pushed_at",
       ascendingOrder: false,
 
       // filters
@@ -34,6 +35,7 @@ class Repositories extends Component {
     this.updateSortParameter = this.updateSortParameter.bind(this);
     this.updateAscendingOrder = this.updateAscendingOrder.bind(this);
     this.updateMinStarsCount = this.updateMinStarsCount.bind(this);
+    this.updateUpdatedAfter = this.updateUpdatedAfter.bind(this);
     this.openDialog = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
   }
@@ -83,6 +85,10 @@ class Repositories extends Component {
     this.setState({minStarsCount: minStarsCount})
   }
 
+  updateUpdatedAfter(updatedAfter) {
+    this.setState({updatedAfter: updatedAfter})
+  }
+
   openDialog(repoUrl) {
     this.setState({dialogRepoUrl: repoUrl})
   }
@@ -111,7 +117,7 @@ class Repositories extends Component {
       default: break;
     }
     if (this.state.minStarsCount) { repos = repos.filter(repo => repo.stargazers_count >= this.state.minStarsCount) }
-    if (this.state.updatedAfter) { repos = repos.filter(repo => new Date(repo.updated_at) >= new Date(this.state.updatedAfter)) }
+    if (this.state.updatedAfter) { repos = repos.filter(repo => new Date(repo.pushed_at) >= new Date(this.state.updatedAfter)) }
     if (this.state.language) { repos = repos.filter(repo => repo.language === this.state.language) }
     return repos
   }
@@ -130,6 +136,7 @@ class Repositories extends Component {
         <div className="Repositories-formatters">
           <div className="filters">
             <StarsFilter updateMinStarsCount={this.updateMinStarsCount} />
+            <DateFilter updateUpdatedAfter={this.updateUpdatedAfter} />
           </div>
           <div className="sorters">
             <SortersList sortParameter={this.state.sortParameter} updateSortParameter={this.updateSortParameter} />
